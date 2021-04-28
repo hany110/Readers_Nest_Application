@@ -9,9 +9,10 @@ const DetailsScreen = () => {
     const history = useHistory()
     const [book, setbook] = useState({})
     const [active, setActive] = useState(false)
-    const [rating, addRating]=useState(false)
+    const [rating, changeTheRating]=useState(2)
     useEffect(() => {
         findResultbyId()
+
         // BookDetailsService.findResultbyId(bookId)
         //     .then((data) => {
         //         // console.log("I am here ",data)
@@ -26,6 +27,10 @@ const DetailsScreen = () => {
                 setbook(data)
                 setActive(true)
             })
+    }
+    const changeRating=(newRating, name) =>{
+        console.log("Function called")
+        changeTheRating(newRating)
     }
     return(
         <div>
@@ -60,32 +65,51 @@ const DetailsScreen = () => {
 
                     <h5 className="card-title">{book.volumeInfo.title}</h5>
                     <img src={book.volumeInfo.imageLinks.thumbnail} width={100}/>
-                    <p className="card-text">{book.volumeInfo.description}</p>
+                    <p>Written by {
+                        book.volumeInfo.authors !== undefined &&
+                        <>
+                            {book.volumeInfo.authors[0]}
+                        </>
+                    }
+                        {book.volumeInfo.authors === undefined &&
+                        <>
+                            "Not provided by Google Books API"
+                        </>
+                        }
+                    </p>
+                    <div className="tinyFont">
+                    <StarRatings
+                        rating={book.volumeInfo.averageRating}
+                        starDimension="20px"
+                        starSpacing="5px"
+                        starRatedColor="blue"
+                    />{book.volumeInfo.averageRating} avg rating --{book.volumeInfo.ratingsCount} ratings
+                    </div>
+                        <p className="card-text">{book.volumeInfo.description}</p>
 
-                    {/*<Link to={`/courses/grid/edit/${course._id}`} className="btn btn-primary">*/}
-                    {/*    {course.title}*/}
-                    {/*</Link>*/}
-                    {/*<br/>*/}
-                    {/*<Link to={`/courses/${course._id}/quizzes`}>*/}
-                    {/*    Quizzes*/}
-                    {/*</Link>*/}
+                    <div className="row">
+                    <select
+                        // onChange={(e) =>
+                        // setWidget(widget => ({...widget, size: parseInt(e.target.value)}))}
+                        className="form-control yellow-color dropdown-width">
+                        <option value={1}>Want to read</option>
+                        <option value={2}>Currently reading</option>
+                        <option value={3}>Read</option>
+                    </select>
 
-                    {/*{*/}
-                    {/*    !editing &&*/}
-                    {/*    <div>*/}
-                    {/*        <i onClick={() => setEditing(true)} className="fas fa-edit blue-color float-right"></i>*/}
-                    {/*        /!*<i onClick={() => deleteCourse(course)} className="fas fa-trash red-color float-right"></i>*!/*/}
-                    {/*    </div>*/}
-                    {/*}*/}
-                    {/*<SaveBtn/>*/}
-                    <button className="btn btn-warning add-to-list">
-                        Save
-                    </button>
                     <Link to={`/details/${book.id}`}>
                         <button className="btn btn-primary view-on-google">
                             Check this on Google
                         </button>
                     </Link>
+                    </div>
+                    {/*<StarRatings*/}
+                    {/*    rating={rating}*/}
+                    {/*    starRatedColor="blue"*/}
+                    {/*    changeRating={changeRating}*/}
+                    {/*    numberOfStars={5}*/}
+                    {/*    name='rating'*/}
+                    {/*/>*/}
                 </div>
             </div>
             }

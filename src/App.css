@@ -40,3 +40,21 @@
 .float-right{
   float: right;
 }
+
+.view-on-google{
+  margin-left: 10px;
+}
+
+.tinyFont{
+  font-size: x-small;
+}
+.black-color{
+  color: black;
+}
+.yellow-color{
+  background-color: #ffd11a;
+  color: white;
+}
+.dropdown-width{
+  width:180px;
+}
