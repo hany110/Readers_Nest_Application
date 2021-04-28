@@ -5,6 +5,8 @@ import Home from "./components/home";
 import DetailsScreen from "./components/details-page";
 import Profile from "./components/Profile/profile";
 import BookShelf from "./components/BookShelf/bookshelf";
+import Login from "./components/Login/login";
+import Register from "./components/Register/register";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/details/:bookId" exact={true}  component={DetailsScreen}/>
           <Route path="/profile" exact={true} component={Profile}/>
           <Route path="/bookshelf" exact={true} component={BookShelf}/>
+          <Route path="/login" exact={true} component={Login}/>
+          <Route path="/register" exact={true} component={Register}/>
         </div>
 
       </BrowserRouter>

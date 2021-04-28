@@ -4,7 +4,7 @@ function Jumbotron({ children }) {
     return (
         <div
             style={{ textAlign: "center" }}
-            className="col-lg jumbotron"
+            className="col-lg jumbotron jumbo-color"
         >
             {children}
         </div>

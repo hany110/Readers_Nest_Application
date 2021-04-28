@@ -37,9 +37,9 @@
   }
 }
 
-.float-right{
-  float: right;
-}
+/*.float-right {*/
+/*  float: right;*/
+/*}*/
 
 .view-on-google{
   margin-left: 10px;
@@ -57,4 +57,16 @@
 }
 .dropdown-width{
   width:180px;
+}
+
+.jumbo-color{
+  color: white;
+background:linear-gradient(180deg, rgba(65,4,119,1) 0%, rgba(22,147,198,1) 58%, rgba(255,255,255,0.1407913507199755) 82%);
+}
+
+.nav-bg-color{
+  background: rgba(65,4,119,1) 0%
+}
+.white-color{
+  color: white;
 }

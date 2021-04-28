@@ -64,7 +64,7 @@ const SearchBar = (
             </Row>
             <Row>
                 <Container>
-                    <h2>Book Search</h2>
+                    <h2 className="white-color">Book Search</h2>
                     <div>
                     <input onChange={(e) => setSearchTerm(e.target.value)}
                                    placeholder="Search for books" className="form-control" />
