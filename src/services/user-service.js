@@ -1,4 +1,5 @@
-const USER_API = "http://localhost:3001/api/users";
+// const USER_API = "http://localhost:3001/api/users";
+const USER_API = "https://wbdv-readers-nest-node-server.herokuapp.com/api/users";
 
 const profile = () => {
     return fetch(`${USER_API}/profile`, {
