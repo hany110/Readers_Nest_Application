@@ -11,13 +11,14 @@ import Register from "./components/Register/register";
 function App() {
   return (
       <BrowserRouter>
-        <div className="container-fluid">
-          <Route path="/" exact={true}  component={Home}/>
+        <div>
+          <Route path={["/","/books/:bookId"]} exact={true}  component={Home}/>
+          {/*<Route path={"/books/:bookId"} exact={true}  component={Home}/>*/}
           <Route path="/details/:bookId" exact={true}  component={DetailsScreen}/>
-          <Route path="/profile" exact={true} component={Profile}/>
-          <Route path="/bookshelf" exact={true} component={BookShelf}/>
-          <Route path="/login" exact={true} component={Login}/>
-          <Route path="/register" exact={true} component={Register}/>
+          <Route path="/user/profile" exact={true} component={Profile}/>
+          <Route path="/bookshelf/:bookId" exact={true} component={BookShelf}/>
+          <Route path="/users/login" exact={true} component={Login}/>
+          <Route path="/users/register" exact={true} component={Register}/>
         </div>
 
       </BrowserRouter>

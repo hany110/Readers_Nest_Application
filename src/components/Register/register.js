@@ -4,16 +4,17 @@ import userService from '../../services/user-service'
 import "./register.css"
 
 const Register = () => {
-    const [credentials, setCredentials] = useState({userName: '', password: ''})
+    const [credentials, setCredentials] = useState({userName: '', password: '', firstName:"",lastName:"",role:"USER"})
     const history = useHistory()
     const register = () => {
         userService.register(credentials)
             .then((user) => {
-                console.log(user)
+                console.log("returned promise",user)
                 if(user === 0) {
                     alert("userName already taken")
                 } else {
-                    history.push("/profile")
+                    localStorage.setItem("userdetails",JSON.stringify(user))
+                    history.push("/")
                 }
             })
     }
@@ -25,6 +26,22 @@ const Register = () => {
                 </div>
                 <div class="form-group form-group-register">
                     <form action="" id="loginform">
+                        <label htmlFor="firstName">firstName</label>
+                        <input
+                            value={credentials.firstName}
+                            onChange={(e) => {
+                                setCredentials({...credentials, firstName: e.target.value})
+                            }}
+                            className="form-control"
+                            placeholder="firstName"/>
+                        <label htmlFor="lastName">lastName</label>
+                        <input
+                            value={credentials.lastName}
+                            onChange={(e) => {
+                                setCredentials({...credentials, lastName: e.target.value})
+                            }}
+                            className="form-control"
+                            placeholder="lastName"/>
                         <label for="userName">userName</label>
                         <input
                             value={credentials.userName}
@@ -38,15 +55,18 @@ const Register = () => {
                             className="form-control"
                             type="password"
                             placeholder="password"/>
+                        <label htmlFor="password">Confirm Password</label>
                         <input className="form-control" placeholder="validate password"
                                type="password"/>
                     </form>
+
                     <button
                         onClick={register}
                         className="btn btn-primary btn-md btn-block button-register">
                         Register
                     </button>
-                    <Link to="/login" style = {{float:"right"}}>
+
+                    <Link to="/users/login" style = {{float:"right"}}>
                         Login
                     </Link>
 

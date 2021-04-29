@@ -21,6 +21,7 @@ const login = (credentials) => {
 }
 
 const register = (credentials) => {
+    console.log("register service",credentials)
     return fetch(`${USER_API}/register`, {
         method: "POST",
         credentials: "include",
@@ -36,7 +37,7 @@ const logout = () => {
     return fetch(`${USER_API}/logout`, {
         method: "POST",
         credentials: "include"
-    }).then(() => {})
+    }).then(response=>response.json())
 }
 
 const findAllMyFriends = () => {
@@ -49,6 +50,17 @@ const findUserById = (uid) => {
         .then(response => response.json())
 }
 
+const updateUser = (credentials) => {
+    return fetch(`${USER_API}/update`, {
+        method: "PUT",
+        credentials: "include",
+        body: JSON.stringify(credentials),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+}
+
 export default {
-    register, login, logout, profile, findAllMyFriends, findUserById
+    register, login, logout, profile, findAllMyFriends, findUserById,updateUser
 }

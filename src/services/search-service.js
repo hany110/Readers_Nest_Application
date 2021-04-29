@@ -1,7 +1,7 @@
 const SEARCH_URL = "https://www.googleapis.com/books/v1/volumes?q=";
 
 const findResult =(searched) => {
-    return fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searched}&key=AIzaSyCAWkmo45hFa_5vUogSWC6E6LKmjUakB54`)
+    return fetch(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searched}&key=AIzaSyByWsH_b0gUJW7ZfijOdBbRgNRus_kTkGs`)
             .then(response => response.json())
 
 }

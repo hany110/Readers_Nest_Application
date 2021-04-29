@@ -5,7 +5,7 @@ import Nav from './Nav';
 
 export default () =>
     <>
-            <Nav />
+        <Nav />
         <div className="list-group">
                 <SearchBar/>
         </div>

@@ -3,7 +3,7 @@ import {Link, useHistory, useParams} from 'react-router-dom'
 import BookDetailsService from '../services/details-search-service'
 import MetaTags from 'react-meta-tags';
 import StarRatings from 'react-star-ratings';
-
+import Nav from "./Nav/index"
 const DetailsScreen = () => {
     const {bookId} = useParams()
     const history = useHistory()
@@ -34,6 +34,7 @@ const DetailsScreen = () => {
     }
     return(
         <div>
+        <Nav/>
             {/*<button onClick={()=>{history.goBack()}}>Back</button>*/}
             {/*/!*{bookId}*!/*/}
             {/*/!*{book.id}*!/*/}
@@ -97,11 +98,11 @@ const DetailsScreen = () => {
                         <option value={3}>Read</option>
                     </select>
 
-                    <Link to={`/details/${book.id}`}>
+                    <a href={book.volumeInfo.previewLink}>
                         <button className="btn btn-primary view-on-google">
                             Check this on Google
                         </button>
-                    </Link>
+                    </a>
                     </div>
                     {/*<StarRatings*/}
                     {/*    rating={rating}*/}

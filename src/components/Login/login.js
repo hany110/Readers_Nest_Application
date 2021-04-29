@@ -15,7 +15,8 @@ const Login = () => {
                     alert("login failed, try again")
                     console.log(credentials)
                 } else {
-                    history.push("/profile")
+                    localStorage.setItem("userdetails",JSON.stringify(user))
+                    history.push("/")
                 }
             })
     }
@@ -36,6 +37,7 @@ const Login = () => {
                             placeholder="userName"/>
                         <label for="password">password</label>
                         <input
+                            type="password"
                             value={credentials.password}
                             onChange={(e) => {setCredentials({...credentials, password: e.target.value})}}
                             className="form-control"
@@ -48,7 +50,7 @@ const Login = () => {
                         className="btn btn-primary btn-md btn-block button-login">
                         Login
                     </button>
-                    <Link to="/register" style = {{float:"right"}}>
+                    <Link to="/users/register" style = {{float:"right"}}>
                         Register
                     </Link>
 

@@ -1,17 +1,44 @@
-import React, {useState} from 'react';
-import {Link} from "react-router-dom";
+import React, {useState,useEffect} from 'react';
+import {Link, useParams} from "react-router-dom";
 import searchService from "../services/search-service";
 import { Col, Row, Container } from './Grid';
 import Jumbotron from './Jumbotron';
 import ViewBtn from './ViewBtn';
 import SaveBtn from './SaveBtn';
 import { List, ListItem } from "./List";
+import userService from "../services/user-service";
+import bookShelfService, {findSavedBooks} from '../services/bookshelf-service';
+import api from "../services/details-search-service";
 
 const SearchBar = (
     {}) => {
     const [searchTerm, setSearchTerm] = useState("palace")
     const [results, saveResult] = useState(null)
     const [active, setActive] = useState(false)
+    const [book,setBook]= useState(null)
+    // const {bookId}=useParams();
+    // console.log("Check this",bookId);
+    const user=JSON.parse(localStorage.getItem("userdetails"))
+    useEffect(() => {
+
+    }, [])
+    // console.log(user);
+    const saveBook = (bookid) => {
+        console.log("inside save book", bookid)
+        bookShelfService.saveBooks(user._id,bookid)
+            .then((book) => {
+                /*console.log(userId);*/
+                // console.log(bookId);
+                // console.log(user._id);
+
+               /* console.log(user)*/
+                    console.log("dekh",book)
+                    setBook(book)
+                alert(book.bookId," has been saved successfully");
+
+                })
+            }
+
     const findResultForKeyword=(searched) =>{
         // console.log("called")
         searchService.findResult(searched)
@@ -65,9 +92,12 @@ const SearchBar = (
             <Row>
                 <Container>
                     <h2 className="white-color">Book Search</h2>
-                    <div>
+                    <div className="row mt-2">
+                        <div className="col-sm-11 spacing-class">
                     <input onChange={(e) => setSearchTerm(e.target.value)}
                                    placeholder="Search for books" className="form-control" />
+                        </div>
+                        <div className="col-sm-1">
                     <Link
                             className="btn btn-primary custom-btn float-right"
                             onClick={() =>
@@ -75,6 +105,7 @@ const SearchBar = (
                             }>
                             Search
                         </Link>
+                        </div>
                     </div>
                 </Container>
             </Row>
@@ -95,7 +126,11 @@ const SearchBar = (
                                                     </strong>
                                                 </Col>
                                                 <Col size='4'>
-                                                    <SaveBtn/>
+                                                    {/*<Link to={`/books/${book.id}`}>*/}
+                                                        <button style={{marginLeft: "10px"}} className="float-right btn btn-warning" onClick={() =>
+                                                            saveBook(book.id)}>Save</button>
+                                                    {/*<SaveBtn onClick={saveBook}></SaveBtn>*/}
+                                                    {/*</Link>*/}
                                                     <Link to={`/details/${book.id}`}>
                                                     <ViewBtn/>
                                                     </Link>
@@ -138,5 +173,5 @@ const SearchBar = (
             }
         </Container>
     )
-    }
+}
 export default SearchBar

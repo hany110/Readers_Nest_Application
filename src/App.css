@@ -70,3 +70,9 @@ background:linear-gradient(180deg, rgba(65,4,119,1) 0%, rgba(22,147,198,1) 58%, 
 .white-color{
   color: white;
 }
+
+@media screen and (max-width: 400px){
+  .spacing-class{
+    margin-top: 20px !important;
+  }
+}
